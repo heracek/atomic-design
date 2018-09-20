@@ -1,0 +1,22 @@
+{
+  "name": "atomic-design",
+  "private": true,
+  "license": "MPL-2.0",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "mdx-deck deck.mdx",
+    "build": "mdx-deck build deck.mdx",
+    "pdf": "mdx-deck pdf deck.mdx --port=8089",
+    "image": "mdx-deck screenshot deck.mdx",
+    "help": "mdx-deck"
+  },
+  "dependencies": {
+    "bootstrap": "4.1.3",
+    "classnames": "2.2.6"
+  },
+  "devDependencies": {
+    "css-loader": "1.0.0",
+    "mdx-deck": "^1.6.7",
+    "style-loader": "0.23.0"
+  }
+}
