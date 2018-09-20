@@ -5,6 +5,7 @@
   margin: auto;
 }
 
+/* --- mdx-deck fixes --- */
 label {
  font-size: 1rem;
 }
@@ -12,3 +13,9 @@ label {
 p {
   font-size: 1rem;
 }
+
+pre, code {
+  font-size: 1.3rem;
+  line-height: 1.4 !important;
+}
+/* ~~~ mdx-deck fixes ~~~ */

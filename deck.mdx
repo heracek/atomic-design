@@ -78,8 +78,8 @@ import { LoginPage } from './src/components/pages/LoginPage';
 | `<Button />` | <Button title="Hello" /> |
 | `<Input />` | <Input placeholder="Name..."/> |
 | `<Label />` | <Label>Name</Label> |
-| `<Form />` | *not visible* |
-| `<FormGroup />` | *not visible* |
+| `<Form />` | *(not visible)* |
+| `<FormGroup />` | *(not visible)* |
 
 <br />
 
@@ -148,7 +148,13 @@ export const LoginForm = ({ values, onInputChange, ...rest }) => (
 
 ---
 
+# Template
+## = Page UI
+
+---
+
 # Templates
+
 
 |   |   |
 |---|---|
@@ -170,12 +176,24 @@ export const LoginTemplate = ({ ...rest }) => (
 
 ---
 
+# Page
+## = Template + Data + Logic
+
+---
 
 # Pages
 
 |   |   |
 |---|---|
-| `<LoginPage />` | ...  |
+| `<LoginPage />` | <LoginPage /> |
+
+---
+
+# Pages
+
+|   |   |
+|---|---|
+| `<LoginPage />` | *(on previous slide)*  |
 
 ```jsx
 export class LoginPage extends Component {
@@ -204,8 +222,15 @@ export class LoginPage extends Component {
 }
 ```
 
+---
+
+# ⚛️ Atomic Design
+
+## = System of Components
 
 ---
+
+<pre style={{ fontSize: 100 }}>🤦        🧘      </pre>
 
 ```
 src                                   src
@@ -235,8 +260,8 @@ src                                   src
 
 ---
 
-# ?
+# 🙋?
 
 ---
 
-# Thanks!
+# Thanks! 🙏 
