@@ -1,5 +1,6 @@
-import './src/bootstrap.css';
-import { Appear, Code, Head } from 'mdx-deck'
+import { Appear, Code, Image, Head } from 'mdx-deck'
+import { Split, SplitRight } from 'mdx-deck/layouts'
+
 export { default as theme } from './theme'
 
 import { Button } from './src/components/atoms/Button';
@@ -7,9 +8,15 @@ import { Input } from './src/components/atoms/Input';
 import { Label } from './src/components/atoms/Label';
 import { InputWithLabel } from './src/components/molecules/InputWithLabel';
 import { LoginForm } from './src/components/organisms/LoginForm';
+import { LoginTemplate } from './src/components/templates/LoginTemplate';
+import { LoginPage } from './src/components/pages/LoginPage';
 
 <Head>
   <title>⚛️ Atomic Design</title>
+  <style type="text/css">
+    {require('./assets/bootstrap.css').toString()}
+    {require('./src/main.css').toString()}
+  </style>
 </Head>
 
 # ⚛️ Atomic Design
@@ -32,7 +39,6 @@ import { LoginForm } from './src/components/organisms/LoginForm';
 
 # Component Examples
 
-
 |   |   |
 |---|---|
 | `<Button />` | <Button title="Hello" /> |
@@ -41,3 +47,196 @@ import { LoginForm } from './src/components/organisms/LoginForm';
 | `<InputWithLabel />` | <InputWithLabel id="name" label="Name" /> |
 | `<LoginForm />` | <LoginForm /> |
 
+---
+
+<img className="img-fluid" src={require('./assets/AtomicDesignLogo.svg')} />
+
+[atomicdesign.bradfrost.com](http://atomicdesign.bradfrost.com/)
+
+---
+
+<img className="img-fluid" src={require('./assets/periodic-table.png')} />
+
+---
+
+<img className="img-fluid" src={require('./assets/chemical-equation.png')} />
+
+---
+
+<img className="img-fluid" src={require('./assets/html-periodic-table.png')} />
+
+---
+
+<img className="img-fluid" src={require('./assets/atomic-design-process.png')} />
+
+---
+
+# Atoms
+
+|   |   |
+|---|---|
+| `<Button />` | <Button title="Hello" /> |
+| `<Input />` | <Input placeholder="Name..."/> |
+| `<Label />` | <Label>Name</Label> |
+| `<Form />` | *not visible* |
+| `<FormGroup />` | *not visible* |
+
+<br />
+
+```jsx
+export const Input = ({ type, className, ...rest }) => (
+  <input
+    type={type || 'text'}
+    className={classNames('form-control', className)}
+    {...rest}
+  />
+);
+```
+
+---
+
+# Molecules
+
+|   |   |
+|---|---|
+| `<InputWithLabel />` | <InputWithLabel id="name" label="Name" /> |
+
+<br />
+
+```jsx
+export const InputWithLabel = ({ label, id, onInputChange, ...rest }) => (
+  <FormGroup>
+    <Label htmlFor={id}>{label}:</Label>
+    <Input
+      id={id}
+      name={id}
+      onChange={e => onInputChange && onInputChange(id, e.target.value)}
+      {...rest}
+    />
+  </FormGroup>
+);
+```
+
+---
+
+# Organisms
+
+|   |   |
+|---|---|
+| `<LoginForm />` | <LoginForm /> |
+
+```jsx
+export const LoginForm = ({ values, onInputChange, ...rest }) => (
+  <Form {...rest}>
+    <InputWithLabel
+      id="email"
+      label="Email"
+      value={(values || {}).email}
+      onInputChange={onInputChange}
+    />
+    <InputWithLabel
+      id="passowrd"
+      label="Password"
+      type="passowrd"
+      value={(values || {}).passowrd}
+      onInputChange={onInputChange}
+    />
+    <Button block type="submit" title="Login" />
+  </Form>
+);
+```
+
+---
+
+# Templates
+
+|   |   |
+|---|---|
+| `<LoginTemplate />` | <LoginTemplate /> |
+
+<br />
+
+```jsx
+export const LoginTemplate = ({ ...rest }) => (
+  <PageWrapper>
+    <Heading>Log Into E-shop</Heading>
+    <LoginForm {...rest} />
+    <Paragraph muted className="mt-5 mb-3">
+      © 2016-2018
+    </Paragraph>
+  </PageWrapper>
+);
+```
+
+---
+
+
+# Pages
+
+|   |   |
+|---|---|
+| `<LoginPage />` | ...  |
+
+```jsx
+export class LoginPage extends Component {
+  state = {
+    email: '',
+    passowrd: '',
+  };
+
+  render() {
+    const { email, passowrd } = this.state;
+    const values = { email, passowrd };
+
+    return (
+      <LoginTemplate
+        values={values}
+        onInputChange={(id, value) =>
+          this.setState({ [id]: value })
+        }
+        onSubmit={e => {
+          e.preventDefault();
+          alert(`Send data: ${JSON.stringify(values)}`);
+        }}
+      />
+    );
+  }
+}
+```
+
+
+---
+
+```
+src                                   src
+└── components                        └── components
+    ├── Button.js                         ├── atoms
+    ├── Form.js                           │   ├── Button.js
+    ├── FormGroup.js                      │   ├── Form.js
+    ├── Heading.js                        │   ├── FormGroup.js
+    ├── Input.js                          │   ├── Heading.js
+    ├── InputWithLabel.js                 │   ├── Input.js
+    ├── Label.js                          │   ├── Label.js
+    ├── LoginForm.js                      │   ├── PageWrapper.js
+    ├── LoginPage.js                      │   └── Paragraph.js
+    ├── LoginTemplate.js                  ├── molecules
+    ├── PageWrapper.js                    │   └── InputWithLabel.js
+    └── Paragraph.js                      ├── organisms
+                                          │   └── LoginForm.js
+                                          ├── pages
+                                          │   └── LoginPage.js
+                                          └── templates
+                                              └── LoginTemplate.js 
+```
+
+---
+
+[atomicdesign.bradfrost.com](http://atomicdesign.bradfrost.com/)
+
+---
+
+# ?
+
+---
+
+# Thanks!

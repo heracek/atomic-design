@@ -483,6 +483,11 @@ mark,
   height: auto;
 }
 
+.img-fluid-height {
+  max-height: 100%;
+  height: auto;
+}
+
 .img-thumbnail {
   padding: 0.25rem;
   background-color: #fff;
